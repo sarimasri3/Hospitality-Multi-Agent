@@ -1,0 +1,107 @@
+# Feature Flags Configuration
+
+features:
+  # Agent Features
+  agents:
+    enable_inquiry: true
+    enable_availability: true
+    enable_booking: true
+    enable_upsell: true
+    enable_confirmation: true
+    enable_precheckin: true
+    enable_survey: true
+
+  # Upsell Features
+  upsell:
+    enabled: true
+    show_early_checkin: true
+    show_late_checkout: true
+    show_welcome_basket: true
+    show_spa_package: true
+    show_chef_service: true
+    max_suggestions: 3
+
+  # Booking Features
+  booking:
+    enable_idempotency: true
+    enable_transaction_support: true
+    enable_overlap_checking: true
+    enable_payment_simulation: true
+    require_email_verification: false
+
+  # Memory Features
+  memory:
+    enable_stm: true
+    enable_ltm: true
+    enable_personalization: true
+    stm_ttl_minutes: 30
+    ltm_history_limit: 50
+
+  # Ranking Features
+  ranking:
+    enable_explainable_ai: true
+    enable_distance_scoring: true
+    enable_amenity_matching: true
+    enable_recency_boost: true
+    max_results: 5
+
+  # Communication Features
+  communication:
+    enable_email_notifications: true
+    enable_sms_notifications: false
+    enable_push_notifications: false
+    enable_in_app_messaging: true
+
+  # Survey Features
+  survey:
+    enabled: true
+    send_delay_hours: 24
+    reminder_delay_hours: 72
+    calculate_nps: true
+    calculate_csat: true
+
+  # Performance Features
+  performance:
+    enable_caching: true
+    enable_rate_limiting: true
+    rate_limit_per_minute: 60
+    cache_ttl_seconds: 300
+
+  # Security Features
+  security:
+    enable_authentication: false  # Set to true in production
+    enable_authorization: false   # Set to true in production
+    enable_audit_logging: true
+    enable_pii_redaction: true
+
+  # Experimental Features
+  experimental:
+    enable_ai_price_optimization: false
+    enable_demand_forecasting: false
+    enable_smart_calendar: false
+    enable_virtual_tours: false
+
+# Environment-specific overrides
+environments:
+  development:
+    security:
+      enable_authentication: false
+      enable_authorization: false
+    performance:
+      rate_limit_per_minute: 100
+
+  staging:
+    security:
+      enable_authentication: true
+      enable_authorization: true
+    performance:
+      rate_limit_per_minute: 60
+
+  production:
+    security:
+      enable_authentication: true
+      enable_authorization: true
+    performance:
+      rate_limit_per_minute: 30
+    experimental:
+      enable_ai_price_optimization: true
